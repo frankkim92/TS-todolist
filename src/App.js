@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Header from "./components/Header";
+import Input from "./components/Input";
+import TodoList from "./components/TodoList";
+import { v4 as uuidv4 } from "uuid";
+const initlalState = [
+  {
+    id: uuidv4(),
+    title: "제목1",
+    contents: "내용1",
+    isDone: false,
+  },
+  {
+    id: uuidv4(),
+    title: "제목2",
+    contents: "내용2",
+    isDone: true,
+  },
+  {
+    id: uuidv4(),
+    title: "제목3",
+    contents: "내용3",
+    isDone: false,
+  },
+];
 
 function App() {
+  const [todos, setTodos] = useState(initlalState);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <Input setTodos={setTodos} />
+      <TodoList todos={todos} setTodos={setTodos} isActive={true} />
+      <TodoList todos={todos} setTodos={setTodos} isActive={false} />
     </div>
   );
 }
