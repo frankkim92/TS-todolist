@@ -1,6 +1,13 @@
 import React from "react";
+import { TodoToDo } from "./model";
 
-const Todo = ({ isActive, item, setTodos }) => {
+interface Props {
+  isActive: boolean;
+  item: TodoToDo;
+  setTodos: React.Dispatch<React.SetStateAction<TodoToDo[]>>;
+}
+
+const Todo = ({ isActive, item, setTodos }: Props) => {
   const onClickDelete = () => {
     setTodos((prev) => prev.filter((prevItem) => prevItem.id !== item.id));
   };

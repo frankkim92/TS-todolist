@@ -1,9 +1,11 @@
+import React from "react";
 import { useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import Input from "./components/Input";
 import TodoList from "./components/TodoList";
 import { v4 as uuidv4 } from "uuid";
+import { TodoToDo } from "./components/model";
 const initlalState = [
   {
     id: uuidv4(),
@@ -25,8 +27,8 @@ const initlalState = [
   },
 ];
 
-function App() {
-  const [todos, setTodos] = useState(initlalState);
+const App: React.FC = () => {
+  const [todos, setTodos] = useState<TodoToDo[]>(initlalState);
 
   return (
     <div>
@@ -36,6 +38,6 @@ function App() {
       <TodoList todos={todos} setTodos={setTodos} isActive={false} />
     </div>
   );
-}
+};
 
 export default App;
